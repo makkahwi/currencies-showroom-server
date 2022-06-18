@@ -15,9 +15,13 @@ class Currency(models.Model):
     dissolved = models.BooleanField(default=False)
     count = models.IntegerField(default=1, validators=[MinValueValidator(1)])
     collection = models.DateField()
-    imgF = models.FileField(validators=[validate_file_extension])
-    imgB = models.FileField(validators=[validate_file_extension])
-    notes = models.TextField()
+    imgF = models.FileField(
+        upload_to="static/uploads/", validators=[validate_file_extension]
+    )
+    imgB = models.FileField(
+        upload_to="static/uploads/", validators=[validate_file_extension]
+    )
+    notes = models.TextField(blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
