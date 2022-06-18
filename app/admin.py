@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Currency
 
-# Register your models here.
+
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display = ["value", "currency", "nation", "count", "updated"]
+
+
+admin.site.register(Currency, CurrencyAdmin)
