@@ -13,7 +13,7 @@ from app.viewset import (
 urlpatterns = [
     path("token/obtain", jwt_views.TokenObtainPairView.as_view(), name="JWT Obtain"),
     path("token/refresh", jwt_views.TokenRefreshView.as_view(), name="JWT Refresh"),
-    path("api/v1/currencies", CurrencyListView.as_view(), name="Currency API List"),
+    path("api/v1/currencies/", CurrencyListView.as_view(), name="Currency API List"),
     path(
         "api/v1/currencies/create",
         CurrencyCreateView.as_view(),
@@ -36,7 +36,7 @@ urlpatterns = [
     ),
     re_path(
         r"^.*$",
-        RedirectView.as_view(url="api/v1/currencies", permanent=False),
+        RedirectView.as_view(url="api/v1/currencies/", permanent=False),
         name="Redirect",
     ),
 ]
