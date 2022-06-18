@@ -1,5 +1,6 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from .validators import validate_file_extension
 
 
 class Currency(models.Model):
@@ -7,13 +8,15 @@ class Currency(models.Model):
     currency = models.CharField(max_length=64)
     value = models.DecimalField(max_digits=20, decimal_places=3)
     unit = models.CharField(max_length=64)
-    issueyear = models.DateField()
+    issueyear = models.IntegerField(
+        default=1, validators=[MinValueValidator(1000), MaxValueValidator(2030)]
+    )
     circability = models.BooleanField(default=True)
     dissolved = models.BooleanField(default=False)
     count = models.IntegerField(default=1, validators=[MinValueValidator(1)])
     collection = models.DateField()
-    imgF = models.FileField()
-    imgB = models.FileField()
+    imgF = models.FileField(validators=[validate_file_extension])
+    imgB = models.FileField(validators=[validate_file_extension])
     notes = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
