@@ -2,7 +2,7 @@ from rest_framework import generics
 
 from app.models import Currency
 
-from .permissions import IsOwnerOrReadOnly
+# from .permissions import IsOwnerOrReadOnly
 from .serializers import CurrencySerializer
 
 
@@ -14,22 +14,22 @@ class CurrencyListView(generics.ListAPIView):
 class CurrencyCreateView(generics.ListCreateAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    # permission_classes = (IsOwnerOrReadOnly,)
 
 
 class CurrencyDetailView(generics.RetrieveAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    # permission_classes = (IsOwnerOrReadOnly,)
 
 
 class CurrencyUpdateView(generics.RetrieveUpdateAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    # permission_classes = (IsOwnerOrReadOnly,)
 
 
 class CurrencyDestroyView(generics.RetrieveDestroyAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    # permission_classes = (IsOwnerOrReadOnly,)
