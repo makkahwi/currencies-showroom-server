@@ -8,3 +8,22 @@ services:
       - .:/code
     ports:
       - 8000:8000
+
+  database:
+      image: postgres
+      environment:
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=pguser
+        - POSTGRES_PASSWORD=pgpass
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=suhaib@alembicsoft.com
+      - PGADMIN_DEFAULT_PASSWORD=alembic123
+      - SCRIPT_NAME=/pgadmin4
+    restart: always
+    links:
+      - database
+    ports:
+      - 8082:80
